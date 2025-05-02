@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://w1a33w28w5tj"]
+
+[ext_resource type="Script" uid="uid://72r8wthd0l" path="res://character_body_3d.gd" id="1_cykxj"]
+[ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
+[ext_resource type="Texture2D" uid="uid://bogdn31hd2tot" path="res://kenney_retro-urban-kit/Models/OBJ format/Textures/grass.png" id="2_q41vd"]
+[ext_resource type="ArrayMesh" uid="uid://3tlnt2tkt2ok" path="res://kenney_retro-urban-kit/Models/OBJ format/tree-pine-large.obj" id="3_1r5kd"]
+[ext_resource type="Script" uid="uid://cvvvw7nsmblni" path="res://character_body_3d_2.gd" id="3_q41vd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r5kd"]
+depth_draw_mode = 2
+shading_mode = 0
+diffuse_mode = 1
+albedo_texture = ExtResource("2_q41vd")
+uv1_scale = Vector3(10, 10, 10)
+uv1_triplanar = true
+uv2_scale = Vector3(16, 16, 16)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o6d5r"]
+size = Vector2(1.731, 1.731)
+
+[sub_resource type="Skin" id="Skin_jkgwa"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_cykxj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cykxj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q41vd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1r5kd"]
+
+[node name="fps_game" type="Node3D"]
+script = ExtResource("1_uiy6f")
+score = 5
+speed = 800.0
+rot_speed = 800.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(15.0466, 0, 0, 0, 1, 0, 0, 0, 17.4235, 0, -0.66634, 0)
+material_override = SubResource("StandardMaterial3D_1r5kd")
+mesh = SubResource("PlaneMesh_o6d5r")
+skin = SubResource("Skin_jkgwa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.30774, 0, 0, 0, 1.731, 0, 0, 0, 1.49245, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_cykxj")
+
+[node name="Tree-pine-large" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4004, 0, -3.49889)
+mesh = ExtResource("3_1r5kd")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23258, 0)
+script = ExtResource("1_cykxj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_cykxj")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.518851)
+script = ExtResource("3_q41vd")
+score = 5
+speed = 800.0
+rot_speed = 800.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Camera3D"]
+transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.874125, -0.441932, -1.37958)
+mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D"]
+transform = Transform3D(-0.0351385, -1.49216, 0, 4.51271, -0.0106437, 0, 0, 0, 1.54245, -0.0396185, -0.158508, 1.00126)
+mesh = SubResource("SphereMesh_1r5kd")
+skeleton = NodePath("../../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.126805, 0.991928, 0, -0.991928, 0.126805, 0.328961, 5.32923, -0.724022)

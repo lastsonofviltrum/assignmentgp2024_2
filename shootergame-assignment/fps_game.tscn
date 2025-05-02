@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
 [ext_resource type="Texture2D" uid="uid://bogdn31hd2tot" path="res://kenney_retro-urban-kit/Models/OBJ format/Textures/grass.png" id="2_q41vd"]
 [ext_resource type="ArrayMesh" uid="uid://3tlnt2tkt2ok" path="res://kenney_retro-urban-kit/Models/OBJ format/tree-pine-large.obj" id="3_1r5kd"]
-[ext_resource type="Script" uid="uid://cvvvw7nsmblni" path="res://character_body_3d_2.gd" id="3_q41vd"]
+[ext_resource type="Script" uid="uid://cvvvw7nsmblni" path="res://character_body_3d_2.gd" id="5_q41vd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r5kd"]
 depth_draw_mode = 2
@@ -60,10 +60,7 @@ shape = SubResource("CapsuleShape3D_cykxj")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.518851)
-script = ExtResource("3_q41vd")
-score = 5
-speed = 800.0
-rot_speed = 800.0
+script = ExtResource("5_q41vd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Camera3D"]
 transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.874125, -0.441932, -1.37958)

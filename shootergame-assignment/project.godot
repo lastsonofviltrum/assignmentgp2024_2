@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="ShooterGame-Assignment"
+config/name="ShooterGame-Assignment Actual"
 run/main_scene="uid://w1a33w28w5tj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

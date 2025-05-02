@@ -26,8 +26,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotate(Vector3.DOWN, deg_to_rad(relative.x * deg_to_rad(rot_speed) * delta))
-	rotate(transform.basis.x,deg_to_rad(- relative.y * deg_to_rad(rot_speed) * delta))
+	#rotate(Vector3.DOWN, deg_to_rad(relative.x * deg_to_rad(rot_speed) * delta))
+	#rotate(transform.basis.x,deg_to_rad(- relative.y * deg_to_rad(rot_speed) * delta))
 	relative = Vector2.ZERO
 	if can_move:
 		@warning_ignore("unused_variable")
@@ -40,12 +40,12 @@ func _process(delta):
 		var turn = Input.get_axis("turn_left", "turn_right") - v.x    
 		if abs(turn) > 0:   
 			position = position + global_transform.basis.x * speed * turn * mult * delta
-			# global_translate(global_transform.basis.x * speed * turn * mult * delta)
+			global_translate(global_transform.basis.x * speed * turn * mult * delta)
 		
-		var movef = Input.get_axis("move_forward", "move_back")
-		if abs(movef) > 0:     
-			global_translate(global_transform.basis.z * speed * movef * mult * delta)
+		#var movef = Input.get_axis("move_forward", "move_back")
+		#if abs(movef) > 0:     
+			#global_translate(global_transform.basis.z * speed * movef * mult * delta)
 		
-		var upanddown = Input.get_axis("move_up", "move_down")
-		if abs(upanddown) > 0:     
-			global_translate(- global_transform.basis.y * speed * upanddown * mult * delta)
+		#var upanddown = Input.get_axis("move_up", "move_down")
+		#if abs(upanddown) > 0:     
+			#global_translate(- global_transform.basis.y * speed * upanddown * mult * delta)

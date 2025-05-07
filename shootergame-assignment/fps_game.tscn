@@ -1,15 +1,12 @@
-[gd_scene load_steps=31 format=3 uid="uid://w1a33w28w5tj"]
+[gd_scene load_steps=25 format=3 uid="uid://w1a33w28w5tj"]
 
 [ext_resource type="Script" uid="uid://72r8wthd0l" path="res://character_body_3d.gd" id="1_cykxj"]
 [ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
 [ext_resource type="Texture2D" uid="uid://bogdn31hd2tot" path="res://kenney_retro-urban-kit/Models/OBJ format/Textures/grass.png" id="2_q41vd"]
-[ext_resource type="ArrayMesh" uid="uid://3tlnt2tkt2ok" path="res://kenney_retro-urban-kit/Models/OBJ format/tree-pine-large.obj" id="3_1r5kd"]
 [ext_resource type="Script" uid="uid://cvvvw7nsmblni" path="res://character_body_3d_2.gd" id="5_q41vd"]
 [ext_resource type="AudioStream" uid="uid://jyl6qaid7kbk" path="res://youtube_dGbahiIH3dk_audio.mp3" id="6_1r5kd"]
 [ext_resource type="Texture2D" uid="uid://b7q2xriwkol1h" path="res://istockphoto-937907958-612x612.jpg" id="6_7s0cy"]
 [ext_resource type="Script" uid="uid://bmc06kc7ilafw" path="res://ukelele_beam.gd" id="7_5g1oh"]
-[ext_resource type="Texture2D" uid="uid://c8kwkrrdd4t8x" path="res://pngimg.com - sunflower_seeds_PNG12.png" id="9_hqnje"]
-[ext_resource type="Script" uid="uid://dcuxg8qaee3rt" path="res://realenemy.gd" id="9_is8ay"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r5kd"]
 depth_draw_mode = 2
@@ -77,17 +74,6 @@ glow_enabled = true
 glow_intensity = 0.55
 glow_hdr_scale = 0.14
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5g1oh"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqnje"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jkxx"]
-render_priority = 1
-transparency = 1
-albedo_texture = ExtResource("9_hqnje")
-heightmap_enabled = true
-heightmap_scale = 16.0
-
 [node name="fps_game" type="Node3D"]
 script = ExtResource("1_uiy6f")
 score = 5
@@ -95,7 +81,7 @@ speed = 800.0
 rot_speed = 800.0
 
 [node name="Base" type="StaticBody3D" parent="." groups=["Tree"]]
-transform = Transform3D(1.83868, 0, 0, 0, 1, 0, 0, 0, 1.87838, 0, 0, 0)
+transform = Transform3D(1.83868, 0, 0, 0, 1, 0, 0, 0, 1.87838, -1.34416, 0, -6.94001)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
 transform = Transform3D(22.7181, 0, 0, 0, 1, 0, 0, 0, 17.4235, 0, -0.66634, 0)
@@ -107,10 +93,6 @@ skin = SubResource("Skin_jkgwa")
 transform = Transform3D(1.90901, 0, 0, 0, 1.731, 0, 0, 0, 1.49245, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_cykxj")
 
-[node name="Tree-pine-large" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(0.636742, 0, 0, 0, 1.00176, 0, 0, 0, 0.706095, 1.4004, 0, -3.49889)
-mesh = ExtResource("3_1r5kd")
-
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23258, 0)
 script = ExtResource("1_cykxj")
@@ -118,78 +100,77 @@ script = ExtResource("1_cykxj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_cykxj")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.518851)
-script = ExtResource("5_q41vd")
-
-[node name="Ukelele" type="MeshInstance3D" parent="CharacterBody3D/Camera3D"]
-transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.880605, -0.441932, -1.10973)
+[node name="Ukelele" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.880605, -0.441932, -0.590879)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_7s0cy")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/Ukelele"]
 transform = Transform3D(-0.0351385, -1.49216, 0, 4.51271, -0.0106437, 0, 0, 0, 1.54245, -0.0396185, -0.158508, 1.00126)
 mesh = SubResource("SphereMesh_1r5kd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_5g1oh")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CharacterBody3D/Ukelele"]
 transform = Transform3D(-0.0230904, -1.31242, 0, 2.96542, -0.00936158, 0, 0, 0, 0.831741, -0.300948, -0.158508, 1.00126)
 mesh = SubResource("SphereMesh_1r5kd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hqnje")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="CharacterBody3D/Ukelele"]
 transform = Transform3D(1, 0, 0, 0, 1.78114, 0, 0, 0, 0.242885, -0.74537, 0, 1.54965)
 material_override = SubResource("StandardMaterial3D_is8ay")
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CharacterBody3D/Ukelele"]
 transform = Transform3D(1.3202, 0, 0, 0, 1.78114, 0, 0, 0, 0.242885, -0.406269, 0.00803471, -0.545718)
 material_override = SubResource("StandardMaterial3D_is8ay")
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.338515, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.216313, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.0730519, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, -0.0305448, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, -0.142218, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="UkeleleBeam" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele" groups=["Beam"]]
+[node name="UkeleleBeam" type="MeshInstance3D" parent="CharacterBody3D/Ukelele" groups=["Beam"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.98786, 0, 0, -3.11672)
 mesh = SubResource("BoxMesh_1r5kd")
 surface_material_override/0 = SubResource("StandardMaterial3D_t0is5")
 script = ExtResource("7_5g1oh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Camera3D/Ukelele/UkeleleBeam"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Ukelele/UkeleleBeam"]
 shape = SubResource("BoxShape3D_is8ay")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.518851)
+script = ExtResource("5_q41vd")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CharacterBody3D/Camera3D"]
 
@@ -201,18 +182,3 @@ transform = Transform3D(1, 0, 0, 0, 0.126805, 0.991928, 0, -0.991928, 0.126805, 
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7s0cy")
-
-[node name="Enemy" type="CharacterBody3D" parent="." groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6885, 0, -7.02501)
-script = ExtResource("9_is8ay")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00613499, 0.474355, -0.00385618)
-shape = SubResource("CapsuleShape3D_5g1oh")
-debug_color = Color(1, 0, 0.219608, 1)
-debug_fill = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
-transform = Transform3D(0.676786, 0, 0.73618, 0, 1, 0, -0.73618, 0, 0.676786, 0, 0.493988, 0)
-mesh = SubResource("CapsuleMesh_hqnje")
-surface_material_override/0 = SubResource("StandardMaterial3D_4jkxx")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://w1a33w28w5tj"]
+[gd_scene load_steps=30 format=3 uid="uid://w1a33w28w5tj"]
 
 [ext_resource type="Script" uid="uid://72r8wthd0l" path="res://character_body_3d.gd" id="1_cykxj"]
 [ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
@@ -68,20 +68,18 @@ proximity_fade_distance = 138.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_is8ay"]
 
-[sub_resource type="Sky" id="Sky_1r5kd"]
-
 [sub_resource type="Environment" id="Environment_7s0cy"]
 background_mode = 1
-background_color = Color(0, 0.309169, 0.796733, 1)
-background_energy_multiplier = 0.0
-sky = SubResource("Sky_1r5kd")
-ambient_light_color = Color(0.620376, 0.740632, 0.466463, 1)
-ambient_light_sky_contribution = 0.28
+background_color = Color(0.479601, 0.669578, 1, 1)
+background_energy_multiplier = 0.59
+ambient_light_source = 1
+ambient_light_color = Color(0.48375, 0.759403, 0.647379, 1)
+ambient_light_sky_contribution = 0.25
 ambient_light_energy = 0.0
 reflected_light_source = 2
+tonemap_exposure = 1.05
 glow_intensity = 0.55
 glow_hdr_scale = 0.14
-fog_enabled = true
 fog_light_color = Color(0.437918, 0.61018, 0.950262, 1)
 fog_density = 0.005
 
@@ -97,6 +95,8 @@ heightmap_scale = 16.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5g1oh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_hqnje"]
+resource_local_to_scene = true
+region_merge_size = 29.45
 
 [node name="fps_game" type="Node3D"]
 script = ExtResource("1_uiy6f")

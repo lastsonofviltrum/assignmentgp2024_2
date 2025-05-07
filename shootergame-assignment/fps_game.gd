@@ -52,3 +52,8 @@ func _process(delta):
 			global_translate(- global_transform.basis.y * speed * upanddown * mult * delta)
 		
 	get_tree().call_group("Enemy" , "target_position" , target.global_transform.origin)
+
+# 
+# if this is what game design is i hate it
+# i hate all of this
+# and i hate myself for thinking i could actually do it

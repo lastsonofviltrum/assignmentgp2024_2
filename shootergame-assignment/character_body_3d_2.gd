@@ -4,8 +4,6 @@ extends Camera3D
 @export var speed:float = 10
 @export var rot_speed = 500
 var controlling = true
-const JUMP_VELOCITY = 4.5
-
 
 var relative:Vector2 = Vector2.ZERO
 
@@ -32,19 +30,13 @@ func _process(delta):
 	rotate(transform.basis.x,deg_to_rad(- relative.y * deg_to_rad(rot_speed) * delta))
 	relative = Vector2.ZERO
 	if can_move:
-		var _v = Vector3.ZERO
+		var v = Vector3.ZERO
 		
-		var _mult = 1
+		var mult = 1
 		if Input.is_key_pressed(KEY_SHIFT):
-			_mult = 3
+			mult = 3
 		
 	if Input.is_action_just_pressed("mouse_down"):
 		$AudioStreamPlayer3D.play()
 	if Input.is_action_just_released("mouse_down"):
 		$AudioStreamPlayer3D.stop()
-
-func _physics_process(delta):
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-
-	

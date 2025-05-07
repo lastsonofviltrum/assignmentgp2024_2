@@ -26,6 +26,9 @@ func _physics_process(_delta: float) -> void:
 func _update_target_position():
 	navigation_agent_3d.set_target_position(target.global_position)
 
+func on_area_body_entered(body):
+	if body.is_in.group("Beam"):
+		queue_free()
 
 func _on_navigation_agent_3d_target_reached() -> void:
 	# i am going to rip out my own eyes if this does not work

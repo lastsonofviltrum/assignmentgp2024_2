@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://jyl6qaid7kbk" path="res://youtube_dGbahiIH3dk_audio.mp3" id="6_1r5kd"]
 [ext_resource type="Texture2D" uid="uid://b7q2xriwkol1h" path="res://istockphoto-937907958-612x612.jpg" id="6_7s0cy"]
 [ext_resource type="Script" uid="uid://bmc06kc7ilafw" path="res://ukelele_beam.gd" id="7_5g1oh"]
-[ext_resource type="Script" uid="uid://qehhp6fr7ob1" path="res://the real enemy i promise.gd" id="8_hqnje"]
+[ext_resource type="Script" uid="uid://b7gfidajievr4" path="res://actual real enemy script please god.gd" id="8_hqnje"]
 [ext_resource type="Texture2D" uid="uid://c8kwkrrdd4t8x" path="res://pngimg.com - sunflower_seeds_PNG12.png" id="9_hqnje"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r5kd"]
@@ -68,15 +68,18 @@ heightmap_flip_texture = true
 
 [sub_resource type="Environment" id="Environment_7s0cy"]
 background_mode = 1
-background_color = Color(2.40654e-08, 0.129583, 0.376711, 1)
-background_energy_multiplier = 0.95
+background_color = Color(0, 0.309169, 0.796733, 1)
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_1r5kd")
-ambient_light_source = 3
 ambient_light_color = Color(0.620376, 0.740632, 0.466463, 1)
-ambient_light_sky_contribution = 0.88
-glow_enabled = true
+ambient_light_sky_contribution = 0.28
+ambient_light_energy = 0.0
+reflected_light_source = 2
 glow_intensity = 0.55
 glow_hdr_scale = 0.14
+fog_enabled = true
+fog_light_color = Color(0.437918, 0.61018, 0.950262, 1)
+fog_density = 0.005
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5g1oh"]
 
@@ -111,12 +114,13 @@ shape = SubResource("WorldBoundaryShape3D_cykxj")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Base"]
 transform = Transform3D(0.543868, 0, 0, 0, 1, 0, 0, 0, 0.532374, 0.731045, 0, 3.69468)
 navigation_mesh = SubResource("NavigationMesh_7s0cy")
+navigation_layers = 1791
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23258, 0)
 script = ExtResource("1_cykxj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" groups=["player"]]
 shape = SubResource("CapsuleShape3D_cykxj")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]

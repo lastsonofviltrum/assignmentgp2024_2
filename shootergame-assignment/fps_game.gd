@@ -3,6 +3,7 @@ extends Node3D
 @export var score = 0
 @export var speed:float = 10
 @export var rot_speed =0.5
+@onready var target = $Player
 var controlling = true
 
 var relative:Vector2 = Vector2.ZERO
@@ -42,10 +43,12 @@ func _process(delta):
 			position = position + global_transform.basis.x * speed * turn * mult * delta
 			global_translate(global_transform.basis.x * speed * turn * mult * delta)
 		
-		var movef = Input.get_axis("ui_forward", "ui_back")
+		var movef = Input.get_axis("ui_up", "ui_down")
 		if abs(movef) > 0:     
 			global_translate(global_transform.basis.z * speed * movef * mult * delta)
 		
 		var upanddown = Input.get_axis("ui_up", "ui_down")
 		if abs(upanddown) > 0:     
 			global_translate(- global_transform.basis.y * speed * upanddown * mult * delta)
+		
+	get_tree().call_group("Enemy" , "target_position" , target.global_transform.origin)

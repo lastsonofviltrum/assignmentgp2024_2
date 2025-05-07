@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://w1a33w28w5tj"]
+[gd_scene load_steps=31 format=3 uid="uid://w1a33w28w5tj"]
 
 [ext_resource type="Script" uid="uid://72r8wthd0l" path="res://character_body_3d.gd" id="1_cykxj"]
 [ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://jyl6qaid7kbk" path="res://youtube_dGbahiIH3dk_audio.mp3" id="6_1r5kd"]
 [ext_resource type="Texture2D" uid="uid://b7q2xriwkol1h" path="res://istockphoto-937907958-612x612.jpg" id="6_7s0cy"]
 [ext_resource type="Script" uid="uid://bmc06kc7ilafw" path="res://ukelele_beam.gd" id="7_5g1oh"]
+[ext_resource type="Script" uid="uid://qehhp6fr7ob1" path="res://the real enemy i promise.gd" id="8_hqnje"]
+[ext_resource type="Texture2D" uid="uid://c8kwkrrdd4t8x" path="res://pngimg.com - sunflower_seeds_PNG12.png" id="9_hqnje"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r5kd"]
 depth_draw_mode = 2
@@ -74,6 +76,19 @@ glow_enabled = true
 glow_intensity = 0.55
 glow_hdr_scale = 0.14
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_7s0cy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5g1oh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5g1oh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jkxx"]
+render_priority = 3
+transparency = 1
+albedo_texture = ExtResource("9_hqnje")
+heightmap_enabled = true
+heightmap_scale = 16.0
+
 [node name="fps_game" type="Node3D"]
 script = ExtResource("1_uiy6f")
 score = 5
@@ -93,92 +108,110 @@ skin = SubResource("Skin_jkgwa")
 transform = Transform3D(1.90901, 0, 0, 0, 1.731, 0, 0, 0, 1.49245, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_cykxj")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23258, 0)
 script = ExtResource("1_cykxj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_cykxj")
 
-[node name="Ukelele" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.880605, -0.441932, -0.590879)
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.518851)
+script = ExtResource("5_q41vd")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Player/Camera3D"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Player/Camera3D"]
+stream = ExtResource("6_1r5kd")
+
+[node name="Ukelele" type="MeshInstance3D" parent="Player/Camera3D"]
+transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.880605, -0.441932, -1.10973)
 mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_7s0cy")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/Ukelele"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/Camera3D/Ukelele"]
 transform = Transform3D(-0.0351385, -1.49216, 0, 4.51271, -0.0106437, 0, 0, 0, 1.54245, -0.0396185, -0.158508, 1.00126)
 mesh = SubResource("SphereMesh_1r5kd")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_5g1oh")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="CharacterBody3D/Ukelele"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Player/Camera3D/Ukelele"]
 transform = Transform3D(-0.0230904, -1.31242, 0, 2.96542, -0.00936158, 0, 0, 0, 0.831741, -0.300948, -0.158508, 1.00126)
 mesh = SubResource("SphereMesh_1r5kd")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hqnje")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="CharacterBody3D/Ukelele"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Player/Camera3D/Ukelele"]
 transform = Transform3D(1, 0, 0, 0, 1.78114, 0, 0, 0, 0.242885, -0.74537, 0, 1.54965)
 material_override = SubResource("StandardMaterial3D_is8ay")
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="CharacterBody3D/Ukelele"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Player/Camera3D/Ukelele"]
 transform = Transform3D(1.3202, 0, 0, 0, 1.78114, 0, 0, 0, 0.242885, -0.406269, 0.00803471, -0.545718)
 material_override = SubResource("StandardMaterial3D_is8ay")
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Player/Camera3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.338515, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Player/Camera3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.216313, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Player/Camera3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.0730519, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Player/Camera3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, -0.0305448, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="CharacterBody3D/Ukelele/MeshInstance3D3"]
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Player/Camera3D/Ukelele/MeshInstance3D3"]
 transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, -0.142218, 4.31559)
 mesh = SubResource("BoxMesh_q41vd")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="UkeleleBeam" type="MeshInstance3D" parent="CharacterBody3D/Ukelele" groups=["Beam"]]
+[node name="UkeleleBeam" type="MeshInstance3D" parent="Player/Camera3D/Ukelele" groups=["Beam"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.98786, 0, 0, -3.11672)
 mesh = SubResource("BoxMesh_1r5kd")
 surface_material_override/0 = SubResource("StandardMaterial3D_t0is5")
 script = ExtResource("7_5g1oh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Ukelele/UkeleleBeam"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/Ukelele/UkeleleBeam"]
 shape = SubResource("BoxShape3D_is8ay")
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.518851)
-script = ExtResource("5_q41vd")
-
-[node name="AudioListener3D" type="AudioListener3D" parent="CharacterBody3D/Camera3D"]
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CharacterBody3D/Camera3D"]
-stream = ExtResource("6_1r5kd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.126805, 0.991928, 0, -0.991928, 0.126805, 0.328961, 5.32923, -0.724022)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7s0cy")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_7s0cy")
+
+[node name="Enemy" type="CharacterBody3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286027, -8.40746)
+script = ExtResource("8_hqnje")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+shape = SubResource("CapsuleShape3D_5g1oh")
+debug_color = Color(0.917647, 0.215686, 0.486275, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
+mesh = SubResource("CapsuleMesh_5g1oh")
+surface_material_override/0 = SubResource("StandardMaterial3D_4jkxx")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy"]

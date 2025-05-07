@@ -30,11 +30,11 @@ func _process(delta):
 	rotate(transform.basis.x,deg_to_rad(- relative.y * deg_to_rad(rot_speed) * delta))
 	relative = Vector2.ZERO
 	if can_move:
-		var v = Vector3.ZERO
+		var _v = Vector3.ZERO
 		
-		var mult = 1
+		var _mult = 1
 		if Input.is_key_pressed(KEY_SHIFT):
-			mult = 3
+			_mult = 3
 		
 	if Input.is_action_just_pressed("mouse_down"):
 		$AudioStreamPlayer3D.play()

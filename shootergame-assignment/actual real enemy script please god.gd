@@ -31,5 +31,4 @@ func on_area_body_entered(body):
 		queue_free()
 
 func _on_navigation_agent_3d_target_reached() -> void:
-	# i am going to rip out my own eyes if this does not work
 	pass

@@ -35,6 +35,11 @@ func _process(delta):
 		var mult = 1
 		if Input.is_key_pressed(KEY_SHIFT):
 			mult = 3
+		
+	if Input.is_action_just_pressed("mouse_down"):
+		$AudioStreamPlayer3D.play()
+	if Input.is_action_just_released("mouse_down"):
+		$AudioStreamPlayer3D.stop()
 
 
 	

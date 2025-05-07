@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgdignw1kuyqm"
+path="res://.godot/imported/youtube_dGbahiIH3dk_audio.mp3-e0b7222e05f0976d9b70e6557da635e4.mp3str"
+
+[deps]
+
+source_file="res://kenney_retro-urban-kit/Models/OBJ format/youtube_dGbahiIH3dk_audio.mp3"
+dest_files=["res://.godot/imported/youtube_dGbahiIH3dk_audio.mp3-e0b7222e05f0976d9b70e6557da635e4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

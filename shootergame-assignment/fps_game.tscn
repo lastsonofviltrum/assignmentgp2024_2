@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://w1a33w28w5tj"]
+[gd_scene load_steps=14 format=3 uid="uid://w1a33w28w5tj"]
 
 [ext_resource type="Script" uid="uid://72r8wthd0l" path="res://character_body_3d.gd" id="1_cykxj"]
 [ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
 [ext_resource type="Texture2D" uid="uid://bogdn31hd2tot" path="res://kenney_retro-urban-kit/Models/OBJ format/Textures/grass.png" id="2_q41vd"]
 [ext_resource type="ArrayMesh" uid="uid://3tlnt2tkt2ok" path="res://kenney_retro-urban-kit/Models/OBJ format/tree-pine-large.obj" id="3_1r5kd"]
 [ext_resource type="Script" uid="uid://cvvvw7nsmblni" path="res://character_body_3d_2.gd" id="5_q41vd"]
+[ext_resource type="AudioStream" uid="uid://jyl6qaid7kbk" path="res://youtube_dGbahiIH3dk_audio.mp3" id="6_1r5kd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r5kd"]
 depth_draw_mode = 2
@@ -36,15 +37,16 @@ speed = 800.0
 rot_speed = 800.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1.83868, 0, 0, 0, 1, 0, 0, 0, 1.87838, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(15.0466, 0, 0, 0, 1, 0, 0, 0, 17.4235, 0, -0.66634, 0)
+transform = Transform3D(22.7181, 0, 0, 0, 1, 0, 0, 0, 17.4235, 0, -0.66634, 0)
 material_override = SubResource("StandardMaterial3D_1r5kd")
 mesh = SubResource("PlaneMesh_o6d5r")
 skin = SubResource("Skin_jkgwa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1.30774, 0, 0, 0, 1.731, 0, 0, 0, 1.49245, 0, 0, 0)
+transform = Transform3D(1.90901, 0, 0, 0, 1.731, 0, 0, 0, 1.49245, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_cykxj")
 
 [node name="Tree-pine-large" type="MeshInstance3D" parent="StaticBody3D"]
@@ -71,6 +73,11 @@ skeleton = NodePath("../..")
 transform = Transform3D(-0.0351385, -1.49216, 0, 4.51271, -0.0106437, 0, 0, 0, 1.54245, -0.0396185, -0.158508, 1.00126)
 mesh = SubResource("SphereMesh_1r5kd")
 skeleton = NodePath("../../..")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="CharacterBody3D/Camera3D"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CharacterBody3D/Camera3D"]
+stream = ExtResource("6_1r5kd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.126805, 0.991928, 0, -0.991928, 0.126805, 0.328961, 5.32923, -0.724022)

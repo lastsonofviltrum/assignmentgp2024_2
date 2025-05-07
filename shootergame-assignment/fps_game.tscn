@@ -27,6 +27,8 @@ size = Vector2(1.731, 1.731)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_cykxj"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_7s0cy"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cykxj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_q41vd"]
@@ -76,8 +78,6 @@ glow_enabled = true
 glow_intensity = 0.55
 glow_hdr_scale = 0.14
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_7s0cy"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5g1oh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5g1oh"]
@@ -107,6 +107,10 @@ skin = SubResource("Skin_jkgwa")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base"]
 transform = Transform3D(1.90901, 0, 0, 0, 1.731, 0, 0, 0, 1.49245, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_cykxj")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Base"]
+transform = Transform3D(0.543868, 0, 0, 0, 1, 0, 0, 0, 0.532374, 0.731045, 0, 3.69468)
+navigation_mesh = SubResource("NavigationMesh_7s0cy")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23258, 0)
@@ -199,19 +203,61 @@ transform = Transform3D(1, 0, 0, 0, 0.126805, 0.991928, 0, -0.991928, 0.126805, 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7s0cy")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_7s0cy")
+[node name="Enemies" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.680834, 0)
 
-[node name="Enemy" type="CharacterBody3D" parent="." groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286027, -8.40746)
 script = ExtResource("8_hqnje")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy"]
 shape = SubResource("CapsuleShape3D_5g1oh")
 debug_color = Color(0.917647, 0.215686, 0.486275, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy"]
 mesh = SubResource("CapsuleMesh_5g1oh")
 surface_material_override/0 = SubResource("StandardMaterial3D_4jkxx")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemy"]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemies/Enemy"]
+
+[node name="Enemy2" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8738, 0.286027, -8.40746)
+script = ExtResource("8_hqnje")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy2"]
+shape = SubResource("CapsuleShape3D_5g1oh")
+debug_color = Color(0.917647, 0.215686, 0.486275, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy2"]
+mesh = SubResource("CapsuleMesh_5g1oh")
+surface_material_override/0 = SubResource("StandardMaterial3D_4jkxx")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemies/Enemy2"]
+
+[node name="Enemy3" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8676, 0.286027, -8.40746)
+script = ExtResource("8_hqnje")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy3"]
+shape = SubResource("CapsuleShape3D_5g1oh")
+debug_color = Color(0.917647, 0.215686, 0.486275, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy3"]
+mesh = SubResource("CapsuleMesh_5g1oh")
+surface_material_override/0 = SubResource("StandardMaterial3D_4jkxx")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemies/Enemy3"]
+
+[node name="Enemy4" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17697, 0.286027, -16.8037)
+script = ExtResource("8_hqnje")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy4"]
+shape = SubResource("CapsuleShape3D_5g1oh")
+debug_color = Color(0.917647, 0.215686, 0.486275, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy4"]
+mesh = SubResource("CapsuleMesh_5g1oh")
+surface_material_override/0 = SubResource("StandardMaterial3D_4jkxx")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Enemies/Enemy4"]

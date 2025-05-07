@@ -124,6 +124,7 @@ script = ExtResource("1_cykxj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" groups=["player"]]
 shape = SubResource("CapsuleShape3D_cykxj")
+debug_color = Color(0.94902, 0.192157, 0.329412, 1)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0539529, 0.518851)
@@ -203,7 +204,7 @@ script = ExtResource("7_5g1oh")
 [node name="StaticBody3D" type="StaticBody3D" parent="Player/Camera3D/Ukelele/UkeleleBeam"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/Ukelele/UkeleleBeam/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -2.25726e-11, -2.91038e-10, -2.24842e-11, 1, -5.82077e-11, 2.72848e-12, 0, 1, -0.000991821, -0.00128269, -0.00503933)
 shape = SubResource("BoxShape3D_is8ay")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -217,6 +218,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.680834, 0)
 
 [node name="Enemy" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286027, -8.40746)
+axis_lock_linear_y = true
 script = ExtResource("8_hqnje")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy"]
@@ -237,6 +239,7 @@ debug_color = Color(0.917647, 0.215686, 0.486275, 1)
 
 [node name="Enemy2" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.17057, 0.286027, -8.40746)
+axis_lock_linear_y = true
 script = ExtResource("8_hqnje")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy2"]
@@ -257,6 +260,7 @@ debug_color = Color(0.917647, 0.215686, 0.486275, 1)
 
 [node name="Enemy3" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91549, 0.286027, -8.40746)
+axis_lock_linear_y = true
 script = ExtResource("8_hqnje")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy3"]
@@ -276,7 +280,8 @@ shape = SubResource("CapsuleShape3D_5g1oh")
 debug_color = Color(0.917647, 0.215686, 0.486275, 1)
 
 [node name="Enemy4" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.712687, 0.286027, -13.3192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135217, 0.286027, -14.1911)
+axis_lock_linear_y = true
 script = ExtResource("8_hqnje")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy4"]

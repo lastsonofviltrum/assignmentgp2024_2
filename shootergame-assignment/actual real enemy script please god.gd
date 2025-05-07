@@ -19,8 +19,6 @@ func _physics_process(_delta: float) -> void:
 	var calculateVelcotiy = direction * speed
 	velocity = Vector3(calculateVelcotiy.x, velocity.y, calculateVelcotiy.z)
 	
-	look_at(target.global_position)
-	
 	move_and_slide()
 	
 	_update_target_position()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://w1a33w28w5tj"]
+[gd_scene load_steps=31 format=3 uid="uid://w1a33w28w5tj"]
 
 [ext_resource type="Script" uid="uid://72r8wthd0l" path="res://character_body_3d.gd" id="1_cykxj"]
 [ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b7q2xriwkol1h" path="res://istockphoto-937907958-612x612.jpg" id="6_7s0cy"]
 [ext_resource type="Script" uid="uid://bmc06kc7ilafw" path="res://ukelele_beam.gd" id="7_5g1oh"]
 [ext_resource type="Texture2D" uid="uid://c8kwkrrdd4t8x" path="res://pngimg.com - sunflower_seeds_PNG12.png" id="9_hqnje"]
-[ext_resource type="Script" uid="uid://cd8nc5k3kjyjk" path="res://enemy.gd" id="9_is8ay"]
+[ext_resource type="Script" uid="uid://dcuxg8qaee3rt" path="res://realenemy.gd" id="9_is8ay"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r5kd"]
 depth_draw_mode = 2
@@ -61,6 +61,8 @@ heightmap_min_layers = 8
 heightmap_max_layers = 32
 heightmap_flip_texture = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_is8ay"]
+
 [sub_resource type="Sky" id="Sky_1r5kd"]
 
 [sub_resource type="Environment" id="Environment_7s0cy"]
@@ -76,12 +78,11 @@ glow_intensity = 0.55
 glow_hdr_scale = 0.14
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5g1oh"]
-radius = 0.284633
-height = 2.161
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_is8ay"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqnje"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jkxx"]
+render_priority = 1
 transparency = 1
 albedo_texture = ExtResource("9_hqnje")
 heightmap_enabled = true
@@ -181,11 +182,14 @@ mesh = SubResource("BoxMesh_q41vd")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
-[node name="UkeleleBeam" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele"]
+[node name="UkeleleBeam" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Ukelele" groups=["Beam"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.98786, 0, 0, -3.11672)
 mesh = SubResource("BoxMesh_1r5kd")
 surface_material_override/0 = SubResource("StandardMaterial3D_t0is5")
 script = ExtResource("7_5g1oh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Camera3D/Ukelele/UkeleleBeam"]
+shape = SubResource("BoxShape3D_is8ay")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CharacterBody3D/Camera3D"]
 
@@ -199,16 +203,16 @@ transform = Transform3D(1, 0, 0, 0, 0.126805, 0.991928, 0, -0.991928, 0.126805, 
 environment = SubResource("Environment_7s0cy")
 
 [node name="Enemy" type="CharacterBody3D" parent="." groups=["Enemy"]]
-transform = Transform3D(1.83868, 0, 0, 0, 1, 0, 0, 0, 1.87838, -8.85658, -0.337925, -6.28471)
-disable_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6885, 0, -7.02501)
 script = ExtResource("9_is8ay")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.785644, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00613499, 0.474355, -0.00385618)
 shape = SubResource("CapsuleShape3D_5g1oh")
-debug_color = Color(0.878431, 0.145098, 0.317647, 1)
+debug_color = Color(1, 0, 0.219608, 1)
+debug_fill = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
-transform = Transform3D(-0.331808, 0, 0.198854, 0, 0.577054, 0, 0.207941, 0, 0.317309, 0, 0.768136, 0)
-mesh = SubResource("CapsuleMesh_is8ay")
+transform = Transform3D(0.676786, 0, 0.73618, 0, 1, 0, -0.73618, 0, 0.676786, 0, 0.493988, 0)
+mesh = SubResource("CapsuleMesh_hqnje")
 surface_material_override/0 = SubResource("StandardMaterial3D_4jkxx")

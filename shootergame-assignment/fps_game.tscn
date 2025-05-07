@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://w1a33w28w5tj"]
+[gd_scene load_steps=19 format=3 uid="uid://w1a33w28w5tj"]
 
 [ext_resource type="Script" uid="uid://72r8wthd0l" path="res://character_body_3d.gd" id="1_cykxj"]
 [ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
@@ -28,7 +28,23 @@ size = Vector2(1.731, 1.731)
 
 [sub_resource type="BoxMesh" id="BoxMesh_q41vd"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s0cy"]
+albedo_color = Color(0.434345, 0.28203, 0.0411071, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_1r5kd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5g1oh"]
+albedo_color = Color(1, 0.917647, 0.45098, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqnje"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_is8ay"]
+albedo_color = Color(0.262069, 0.162522, 0.0518923, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpgol"]
+albedo_color = Color(0, 0, 0, 1)
 
 [node name="fps_game" type="Node3D"]
 script = ExtResource("1_uiy6f")
@@ -68,11 +84,61 @@ script = ExtResource("5_q41vd")
 transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.874125, -0.441932, -1.37958)
 mesh = SubResource("BoxMesh_q41vd")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_7s0cy")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D"]
 transform = Transform3D(-0.0351385, -1.49216, 0, 4.51271, -0.0106437, 0, 0, 0, 1.54245, -0.0396185, -0.158508, 1.00126)
 mesh = SubResource("SphereMesh_1r5kd")
 skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_5g1oh")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D"]
+transform = Transform3D(-0.0230904, -1.31242, 0, 2.96542, -0.00936158, 0, 0, 0, 0.831741, -0.300948, -0.158508, 1.00126)
+mesh = SubResource("SphereMesh_1r5kd")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hqnje")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.78114, 0, 0, 0, 0.242885, -0.74537, 0, 1.54965)
+material_override = SubResource("StandardMaterial3D_is8ay")
+mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D"]
+transform = Transform3D(1.3202, 0, 0, 0, 1.78114, 0, 0, 0, 0.242885, -0.406269, 0.00803471, -0.545718)
+material_override = SubResource("StandardMaterial3D_is8ay")
+mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D/MeshInstance3D3"]
+transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.338515, 4.31559)
+mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D/MeshInstance3D3"]
+transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.216313, 4.31559)
+mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D/MeshInstance3D3"]
+transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, 0.0730519, 4.31559)
+mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D/MeshInstance3D3"]
+transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, -0.0305448, 4.31559)
+mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/MeshInstance3D/MeshInstance3D3"]
+transform = Transform3D(0.0735539, 0, 0, 0, 0.0495548, 0, 0, 0, 8.82372, -0.428475, -0.142218, 4.31559)
+mesh = SubResource("BoxMesh_q41vd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_bpgol")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CharacterBody3D/Camera3D"]
 

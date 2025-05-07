@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://w1a33w28w5tj"]
+[gd_scene load_steps=21 format=3 uid="uid://w1a33w28w5tj"]
 
 [ext_resource type="Script" uid="uid://72r8wthd0l" path="res://character_body_3d.gd" id="1_cykxj"]
 [ext_resource type="Script" uid="uid://075oehoxaht1" path="res://fps_game.gd" id="1_uiy6f"]
@@ -46,6 +46,20 @@ albedo_color = Color(0.262069, 0.162522, 0.0518923, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpgol"]
 albedo_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Sky" id="Sky_1r5kd"]
+
+[sub_resource type="Environment" id="Environment_7s0cy"]
+background_mode = 1
+background_color = Color(2.40654e-08, 0.129583, 0.376711, 1)
+background_energy_multiplier = 0.95
+sky = SubResource("Sky_1r5kd")
+ambient_light_source = 3
+ambient_light_color = Color(0.620376, 0.740632, 0.466463, 1)
+ambient_light_sky_contribution = 0.88
+glow_enabled = true
+glow_intensity = 0.55
+glow_hdr_scale = 0.14
+
 [node name="fps_game" type="Node3D"]
 script = ExtResource("1_uiy6f")
 score = 5
@@ -81,7 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.518851)
 script = ExtResource("5_q41vd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Camera3D"]
-transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.874125, -0.441932, -1.37958)
+transform = Transform3D(0.0995124, 0, 0, 0, 0.0858989, 0, 0, 0, 0.332273, 0.880605, -0.441932, -1.10973)
 mesh = SubResource("BoxMesh_q41vd")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_7s0cy")
@@ -147,3 +161,6 @@ stream = ExtResource("6_1r5kd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.126805, 0.991928, 0, -0.991928, 0.126805, 0.328961, 5.32923, -0.724022)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7s0cy")
